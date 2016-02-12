@@ -1,0 +1,27 @@
+{
+  "name": "immutable-operations",
+  "version": "1.0.0",
+  "description": "Functional operations on large immutable objects",
+  "main": "dist/index.js",
+  "scripts": {
+    "pretest": "rollup -c rollup.config.test.js",
+    "test": "mocha test/bundle.js"
+  },
+  "keywords": [],
+  "author": "Wilhelm Behncke",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "chai": "^3.5.0",
+    "eslint": "^1.10.3",
+    "mocha": "^2.3.4",
+    "rollup": "^0.24.1",
+    "rollup-plugin-babel": "^2.3.9",
+    "rollup-plugin-multi-entry": "^1.1.0",
+    "source-map-support": "^0.4.0"
+  },
+  "optionalDependencies": {
+    "immutable": "^3.7.6"
+  }
+}
