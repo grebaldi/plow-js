@@ -93,7 +93,7 @@ describe('Migrations > Atoms > $set', () => {
             const subject = {
                 a: ['b', {
                     c: {
-                      d: ['e', 'f']
+                        d: ['e', 'f']
                     }
                 }]
             };
@@ -101,7 +101,7 @@ describe('Migrations > Atoms > $set', () => {
             expect($set('a.0', 'test', subject)).to.deep.equal({
                 a: ['test', {
                     c: {
-                      d: ['e', 'f']
+                        d: ['e', 'f']
                     }
                 }]
             });
@@ -115,24 +115,44 @@ describe('Migrations > Atoms > $set', () => {
             expect($set('a.1.c.d.1', 'test', subject)).to.deep.equal({
                 a: ['b', {
                     c: {
-                      d: ['e', 'test']
+                        d: ['e', 'test']
                     }
                 }]
             });
             expect($set('a.1.c.d.1', 'test', subject)).to.not.equal(subject);
         });
-        it('should do nothing if the path leads to undefined', () => {
+
+        it('should create missing path elements', () => {
             const subject = {
                 a: ['b', {
                     c: {
-                      d: ['e', 'f']
+                        d: ['e', 'f']
                     }
                 }]
             };
 
-            expect($set('a.2', 'test', subject)).to.equal(subject);
-            expect($set('a.1.c.f', 'test', subject)).to.equal(subject);
-            expect($set('a.1.c.d.5', 'test', subject)).to.equal(subject);
+            expect($set('a.2', 'test', subject)).to.deep.equal({
+                a: ['b', {
+                    c: {
+                        d: ['e', 'f']
+                    }
+                }, 'test']
+            });
+            expect($set('a.1.c.f', 'test', subject)).to.deep.equal({
+                a: ['b', {
+                    c: {
+                        d: ['e', 'f'],
+                        f: 'test'
+                    }
+                }]
+            });
+            expect($set('a.1.c.d.5', 'test', subject)).to.deep.equal({
+                a: ['b', {
+                    c: {
+                        d: ['e', 'f', 'test']
+                    }
+                }]
+            });
         });
     });
 

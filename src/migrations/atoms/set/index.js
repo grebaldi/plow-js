@@ -11,7 +11,27 @@ const recursivelySetValueInObject = (object, value, path) => {
         return value;
     }
 
+    //
+    // Create missing path targets
+    //
+    if (typeof object === 'undefined') {
+        if (typeof path[0] === 'number') {
+            object = [];
+        } else {
+            object = {};
+        }
+    }
+
+    //
+    // Make sure, that array elements are always inserted at the last position, if the path exceeds the length
+    // of the array
+    //
+    if (typeof path[0] === 'number' && Array.isArray(object) && object.length < path[0]) {
+        path[0] = object.length;
+    }
+
     object[path[0]] = recursivelySetValueInObject(object[path[0]], value, path.slice(1));
+
     return object;
 };
 
@@ -20,10 +40,6 @@ const recursivelySetValueInObject = (object, value, path) => {
 //
 export default createPolymorphFunction(
     path => value => subject => {
-        if (!$get(path, subject)) {
-            return subject;
-        }
-
         const object = JSON.parse(JSON.stringify(subject));
         return recursivelySetValueInObject(object, value, resolveObjectPath(path));
     }
