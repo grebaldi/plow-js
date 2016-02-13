@@ -7,10 +7,10 @@ describe('Projections > Atoms > $get', () => {
         it('$get :: String -> Object -> *', () => {
             expect($get).to.be.a('function');
             expect($get('')).to.be.a('function');
+            expect($get('')({})).not.to.be.a('function');
         });
 
         it('$get :: (String, Object) -> *', () => {
-            expect($get).to.be.a('function');
             expect($get('', {})).not.to.be.a('function');
         });
     });
