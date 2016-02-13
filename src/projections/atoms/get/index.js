@@ -7,7 +7,7 @@ import resolveObjectPath from '../../../util/resolveObjectPath/index.js';
 export default createPolymorphFunction(
     path => {
         //
-        // This function assumes the path to be the subject, if it is neither
+        // This function returns the path, if it is neither
         // an array nor a string
         //
         if (typeof path !== 'string' && !Array.isArray(path)) {

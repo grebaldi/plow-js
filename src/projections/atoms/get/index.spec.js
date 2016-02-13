@@ -124,6 +124,7 @@ describe('Projections > Atoms > $get', () => {
         it('should return shallowly addressed values');
         it('should return deeply addressed values in objects');
         it('should return deeply addressed values in objects and arrays');
+        it('should gracefully ignore missing values on the path');
         it('should handle string paths');
     });
 });
