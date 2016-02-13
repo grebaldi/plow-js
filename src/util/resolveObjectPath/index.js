@@ -6,6 +6,10 @@ export default path => {
         return path;
     }
 
+    if (typeof path === 'number') {
+        return [path];
+    }
+
     return path.split('.').map(part => {
         const partAsInteger = parseInt(part);
 

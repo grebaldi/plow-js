@@ -8,9 +8,9 @@ export default createPolymorphFunction(
     path => {
         //
         // This function returns the path, if it is neither
-        // an array nor a string
+        // an array nor a string nor a number
         //
-        if (typeof path !== 'string' && !Array.isArray(path)) {
+        if (typeof path !== 'string' && typeof path !== 'number' && !Array.isArray(path)) {
             return path;
         }
 
