@@ -3,7 +3,7 @@ import 'mocha-sinon';
 
 import $remove from './index.js';
 
-describe.only('Migrations > Atoms > $remove', () => {
+describe('Migrations > Atoms > $remove', () => {
     beforeEach(function stubConsoleWarn() {
         this.sinon.stub(console, 'warn');
     });
@@ -49,19 +49,19 @@ describe.only('Migrations > Atoms > $remove', () => {
 
         it('should remove all occurences of an item from an object, addressed by a value', () => {
             const subject = {
-                test: { a: 'a', b: 'b',  c: 'c', d: 'c'}
+                test: { a: 'a', b: 'b',  c: 'c', d: 'c' }
             };
 
             expect($remove('test', 'a', subject)).to.deep.equal({
-                test: { b: 'b',  c: 'c', d: 'c'}
+                test: { b: 'b',  c: 'c', d: 'c' }
             });
             expect($remove('test', 'a', subject)).to.not.equal(subject);
             expect($remove('test', 'b', subject)).to.deep.equal({
-                test: { a: 'a', c: 'c', d: 'c'}
+                test: { a: 'a', c: 'c', d: 'c' }
             });
             expect($remove('test', 'b', subject)).to.not.equal(subject);
             expect($remove('test', 'c', subject)).to.deep.equal({
-                test: { a: 'a', b: 'b'}
+                test: { a: 'a', b: 'b' }
             });
             expect($remove('test', 'c', subject)).to.not.equal(subject);
         });
