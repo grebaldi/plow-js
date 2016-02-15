@@ -1,5 +1,5 @@
 {
-  "name": "immutable-operations",
+  "name": "plow-js",
   "version": "1.0.0",
   "description": "Functional operations on large immutable objects",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "test": "mocha test/bundle.js"
   },
   "keywords": [],
-  "author": "Wilhelm Behncke",
+  "author": "Wilhelm Behncke <wilhelm.behncke@googlemail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
