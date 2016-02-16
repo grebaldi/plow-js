@@ -3,7 +3,7 @@ import 'mocha-sinon';
 
 import $head from './index.js';
 
-describe.only('Projections > Atoms > $head', () => {
+describe('Projections > Atoms > $head', () => {
     beforeEach(function stubConsoleWarn() {
         this.sinon.stub(console, 'warn');
     });
