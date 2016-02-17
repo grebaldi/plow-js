@@ -3,7 +3,7 @@ import sinon from 'sinon';
 
 import $all from './index.js';
 
-describe.only('Connections > Atoms > $all', () => {
+describe('Connections > Atoms > $all', () => {
     // Helper Identity function
     const id = id => id;
 
