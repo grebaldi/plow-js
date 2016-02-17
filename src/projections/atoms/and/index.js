@@ -1,7 +1,4 @@
-const reduceOps = ops => subject => ops.reduce(
-    (subject, nextOp) => subject === false ? subject : nextOp(subject),
-    subject
-);
+const reduceOps = ops => subject => ops.every(op => op(subject));
 
 //
 // Performs all passed operations until one of them returns false
