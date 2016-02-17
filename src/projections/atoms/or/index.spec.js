@@ -3,7 +3,7 @@ import sinon from 'sinon';
 
 import $or from './index.js';
 
-describe('Connections > Atoms > $or', () => {
+describe('Projections > Atoms > $or', () => {
     describe('Common', () => {
         it('$or :: ...Function -> Object -> *', () => {
             expect($or).to.be.a('function');

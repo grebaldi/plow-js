@@ -3,7 +3,7 @@ import sinon from 'sinon';
 
 import $not from './index.js';
 
-describe('Connections > Atoms > $not', () => {
+describe('Projections > Atoms > $not', () => {
     describe('Common', () => {
         it('$not :: Function -> Object -> *', () => {
             expect($not).to.be.a('function');
