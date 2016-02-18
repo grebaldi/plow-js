@@ -49,7 +49,7 @@ const state = {
 }
 ```
 
-Plow js allows you to open the kitchen door and turn the light on as follows:
+Plow JS allows you to open the kitchen door and turn the light on as follows:
 
 
 ```js
