@@ -1,1 +1,3 @@
-src/
+.gitignore
+node_modules/
+test/

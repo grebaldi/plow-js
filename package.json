@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "pretest": "rollup -c rollup.config.test.js",
+    "build": "rollup -c rollup.config.build.js",
     "test": "mocha test/bundle.js"
   },
   "keywords": [],
