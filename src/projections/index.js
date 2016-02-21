@@ -1,6 +1,14 @@
-import atoms from './atoms/index.js';
+import * as atoms from './atoms/index.js';
+import * as molecules from './molecules/index.js';
 
-export default Object.assign(
-    {},
-    atoms
-);
+export const $and = atoms.$and;
+export const $contains = atoms.$contains;
+export const $count = atoms.$count;
+export const $get = atoms.$get;
+export const $head = atoms.$head;
+export const $map = atoms.$map;
+export const $not = atoms.$not;
+export const $or = atoms.$or;
+export const $tail = atoms.$tail;
+
+export const $resolve = molecules.$resolve;

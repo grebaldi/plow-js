@@ -2,7 +2,7 @@ import {expect} from 'chai';
 
 import $resolve from './index.js';
 
-describe.only('Projections > Molecules > $resolve', () => {
+describe('Projections > Molecules > $resolve', () => {
     describe('Common', () => {
         it('$resolve :: String -> Object -> *', () => {
             expect($resolve).to.be.a('function');
