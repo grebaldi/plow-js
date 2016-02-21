@@ -1,0 +1,10 @@
+{
+  "name": "plow-js",
+  "dependencies": {
+    "immutable": {
+      "version": "3.7.6",
+      "from": "immutable@>=3.7.6 <4.0.0",
+      "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.7.6.tgz"
+    }
+  }
+}
