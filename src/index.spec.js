@@ -52,6 +52,9 @@ describe('API', () => {
         it('$override', () => {
             expect(api.$override).to.be.a('function');
         });
+        it('$pop', () => {
+            expect(api.$pop).to.be.a('function');
+        });
         it('$remove', () => {
             expect(api.$remove).to.be.a('function');
         });

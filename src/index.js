@@ -19,6 +19,7 @@ export const $transform = projections.$transform;
 export const $add = migrations.$add;
 export const $drop = migrations.$drop;
 export const $override = migrations.$override;
+export const $pop = migrations.$pop;
 export const $remove = migrations.$remove;
 export const $set = migrations.$set;
 export const $unshift = migrations.$unshift;
