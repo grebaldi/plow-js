@@ -62,7 +62,7 @@ const newState = $merge('rooms.kitchen', {
 Well that was easy... Now let's grab a beer, turn the light off and the TV on:
 
 ```js
-const beer = $get('rooms.kitchen.refridgerator.0');
+const beer = $head('rooms.kitchen.refridgerator');
 const newState = $all(
     $set('rooms.kitchen.refridgerator', []),
     $set('rooms.kitchen.light', 'off'),
