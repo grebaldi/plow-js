@@ -21,6 +21,7 @@ export const $drop = migrations.$drop;
 export const $override = migrations.$override;
 export const $remove = migrations.$remove;
 export const $set = migrations.$set;
+export const $unshift = migrations.$unshift;
 export const $merge = migrations.$merge;
 export const $toggle = migrations.$toggle;
 

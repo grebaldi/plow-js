@@ -58,6 +58,9 @@ describe('API', () => {
         it('$set', () => {
             expect(api.$set).to.be.a('function');
         });
+        it('$unshift', () => {
+            expect(api.$unshift).to.be.a('function');
+        });
         it('$merge', () => {
             expect(api.$merge).to.be.a('function');
         });
