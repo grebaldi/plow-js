@@ -13,6 +13,7 @@ export const $not = projections.$not;
 export const $or = projections.$or;
 export const $tail = projections.$tail;
 export const $resolve = projections.$resolve;
+export const $transform = projections.$transform;
 
 export const $add = migrations.$add;
 export const $drop = migrations.$drop;

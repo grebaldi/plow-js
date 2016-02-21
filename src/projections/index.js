@@ -12,3 +12,4 @@ export const $or = atoms.$or;
 export const $tail = atoms.$tail;
 
 export const $resolve = molecules.$resolve;
+export const $transform = molecules.$transform;

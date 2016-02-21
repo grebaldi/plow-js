@@ -2,7 +2,7 @@ import {expect} from 'chai';
 
 import * as api from './index.js';
 
-describe.only('API', () => {
+describe('API', () => {
     describe('Projections', () => {
         it('$and', () => {
             expect(api.$and).to.be.a('function');
@@ -33,6 +33,9 @@ describe.only('API', () => {
         });
         it('$resolve', () => {
             expect(api.$resolve).to.be.a('function');
+        });
+        it('$transform', () => {
+            expect(api.$transform).to.be.a('function');
         });
     });
 

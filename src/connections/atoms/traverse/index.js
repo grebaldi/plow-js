@@ -5,7 +5,7 @@ import $set from '../../../migrations/atoms/set/index.js';
 const traverse = actor => subject => {
     if (typeof subject === 'object') {
         return Object.keys(subject).reduce(
-            (subject, key) => $set(key, traverse(actor)(subject[key]), subject),
+            (subject, key) => Object.assign({}, subject, { [key]: traverse(actor)(subject[key]) }),
             subject
         );
     }
