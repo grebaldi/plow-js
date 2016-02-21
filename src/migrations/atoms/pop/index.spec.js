@@ -53,7 +53,7 @@ describe('Migrations > Atoms > $pop', () => {
     });
 
     describe('Immutable', () => {
-        it('should add an item to an array');
+        it('should remove an item from the end an array');
         it('should do nothing and warn when the target is not an array');
     });
 });

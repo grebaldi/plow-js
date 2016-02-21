@@ -4,6 +4,7 @@ import $override from './override/index.js';
 import $pop from './pop/index.js';
 import $remove from './remove/index.js';
 import $set from './set/index.js';
+import $shift from './shift/index.js';
 import $unshift from './unshift/index.js';
 
 export {
@@ -13,5 +14,6 @@ export {
     $pop,
     $remove,
     $set,
+    $shift,
     $unshift
 };

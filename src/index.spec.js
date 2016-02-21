@@ -61,6 +61,9 @@ describe('API', () => {
         it('$set', () => {
             expect(api.$set).to.be.a('function');
         });
+        it('$shift', () => {
+            expect(api.$shift).to.be.a('function');
+        });
         it('$unshift', () => {
             expect(api.$unshift).to.be.a('function');
         });
