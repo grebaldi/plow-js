@@ -8,6 +8,7 @@ export const $contains = projections.$contains;
 export const $count = projections.$count;
 export const $get = projections.$get;
 export const $head = projections.$head;
+export const $last = projections.$last;
 export const $map = projections.$map;
 export const $not = projections.$not;
 export const $or = projections.$or;

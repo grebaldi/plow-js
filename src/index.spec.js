@@ -19,6 +19,9 @@ describe('API', () => {
         it('$head', () => {
             expect(api.$head).to.be.a('function');
         });
+        it('$last', () => {
+            expect(api.$last).to.be.a('function');
+        });
         it('$map', () => {
             expect(api.$map).to.be.a('function');
         });
