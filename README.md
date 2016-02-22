@@ -30,6 +30,14 @@ Immutable already does a great job on providing functions for these situation. B
 
 Plow JS is aiming to fill the remaining gap with functional operations, that allow you to process large state objects in a clear and declarative way.
 
+## Installation
+
+You can install Plow JS via npm:
+
+```sh
+npm install plow-js
+```
+
 ## Example
 
 Given the following object:
