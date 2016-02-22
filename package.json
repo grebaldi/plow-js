@@ -3,6 +3,7 @@
   "description": "Functional operations on large immutable objects",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm run build",
     "pretest": "rollup -c rollup.config.test.js",
     "build": "rollup -c rollup.config.build.js",
     "test": "mocha test/bundle.js",
