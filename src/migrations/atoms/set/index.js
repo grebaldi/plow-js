@@ -40,7 +40,11 @@ const recursivelySetValueInObject = (object, value, path) => {
 //
 export default createPolymorphFunction(
     path => value => subject => {
-        const object = JSON.parse(JSON.stringify(subject));
-        return recursivelySetValueInObject(object, value, resolveObjectPath(path));
+        if (typeof subject !== 'undefined') {
+            const object = JSON.parse(JSON.stringify(subject));
+            return recursivelySetValueInObject(object, value, resolveObjectPath(path));
+        }
+
+        return subject;
     }
 );

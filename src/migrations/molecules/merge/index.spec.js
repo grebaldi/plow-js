@@ -82,6 +82,11 @@ describe('Migrations > Atoms > $merge', () => {
             });
             expect($merge('test', {a: ['foo']}, subject)).to.not.equal(subject);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($merge('some.path', {some: 'value'}, subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

@@ -70,6 +70,11 @@ describe('Migrations > Atoms > $override', () => {
             });
             expect($override('test', ['foo'], subject)).to.not.equal(subject);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($override('some.path', 'someValue', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

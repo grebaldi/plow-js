@@ -50,6 +50,11 @@ describe('Migrations > Atoms > $pop', () => {
             expect(console.warn.calledThrice).to.equal(true);
             expect(console.warn.calledWith('Cannot pop an item from a object.')).to.equal(true);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($pop('some.path', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

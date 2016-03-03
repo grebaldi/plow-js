@@ -154,6 +154,11 @@ describe('Migrations > Atoms > $set', () => {
                 }]
             });
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($set('some.path', 'someValue', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

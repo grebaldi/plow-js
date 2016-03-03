@@ -109,6 +109,11 @@ describe('Migrations > Atoms > $unshift', () => {
             expect(console.warn.calledOnce).to.equal(true);
             expect(console.warn.calledWith('Cannot add {a: overwrite?} to test, because it is already set.')).to.equal(true);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($unshift('some.path', 'someValue', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

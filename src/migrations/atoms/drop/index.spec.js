@@ -82,6 +82,11 @@ describe('Migrations > Atoms > $drop', () => {
             expect(console.warn.calledTwice).to.equal(true);
             expect(console.warn.calledWith('Cannot drop an item from a undefined.')).to.equal(true);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($drop('some.path', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {

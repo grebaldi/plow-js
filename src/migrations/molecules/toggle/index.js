@@ -39,6 +39,8 @@ export default createPolymorphFunction(
             if (typeof target === 'boolean') {
                 return $set(path, !target, value);
             }
+        } else if (typeof value === 'undefined') {
+            return value;
         }
 
         return fallback => {
@@ -60,6 +62,8 @@ export default createPolymorphFunction(
                 // Perform value toggle with empty fallback
                 //
                 return $set(path, target === value ? getEmptyValue(value) : value, fallback);
+            } else if (typeof fallback === 'undefined') {
+                return fallback;
             }
 
             return subject => {

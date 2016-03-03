@@ -116,6 +116,13 @@ describe('Migrations > Molecules > $toggle', () => {
             expect($toggle('test', 'foo', 'bar', subject)).to.deep.equal({ test: 'bar' });
             expect($toggle('test', 'foo', 'bar', subject)).to.not.equal(subject);
         });
+
+        it('should tolerate undefined subjects', () => {
+            const subject = undefined;
+            expect($toggle('some.path', subject)).to.be.an('undefined');
+            expect($toggle('some.path', 'foo', subject)).to.be.an('undefined');
+            expect($toggle('some.path', 'foo', 'bar', subject)).to.be.an('undefined');
+        });
     });
 
     describe('Immutable', () => {
