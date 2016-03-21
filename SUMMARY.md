@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [Projections](docs/projections.md)
-   * [$get](docs/projections/get.md)
+   * [$get](src/projections/atoms/get/index.md)
 
