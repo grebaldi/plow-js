@@ -14,9 +14,15 @@ export default createPolymorphFunction(
             return path;
         }
 
-        return subject => resolveObjectPath(path).reduce(
-            (subject, part) => subject && subject[part],
-            subject
-        );
+        return subject => {
+            if (subject && typeof subject.getIn === 'function') {
+                return subject.getIn(resolveObjectPath(path));
+            }
+
+            return resolveObjectPath(path).reduce(
+                (subject, part) => subject && subject[part],
+                subject
+            );
+        }
     }
 );
