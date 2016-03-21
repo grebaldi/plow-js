@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [Projections](docs/projections.md)
-   * $get
+   * [$get](docs/projections/get.md)
 
