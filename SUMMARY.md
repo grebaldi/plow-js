@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](docs/introduction.md)
-* Projections
+* [Projections](docs/projections.md)
 
