@@ -1,0 +1,34 @@
+# $count projection
+
+> Counts values in objects, arrays or strings that are addressed by `path`
+
+## Signature
+
+**path** *(String/Array)* - Path to the property, that should be counted
+
+**subject** *(Object)* - The object that contains the requested value
+
+**TYPE SIGNATURES**
+```
+String -> Object -> Number
+(String, Object) -> Number
+Array -> Object -> Number
+(Array, Object) -> Number
+```
+
+**EXAMPLE**
+```js
+const myObject = {
+	rooms: {
+		kitchen: {
+			refridgerator: [
+				'eggs',
+				'beer',
+				'milk'
+			]
+		}
+	}
+};
+
+$count('rooms.kitchen.refridgerator', myObject); // returns 3
+```

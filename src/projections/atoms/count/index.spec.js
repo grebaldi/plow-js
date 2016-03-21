@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {Iterable} from 'immutable';
 
 import $count from './index.js';
 
@@ -14,6 +15,18 @@ describe('Projections > atoms > $count', () => {
         it('$count :: (String, Object) -> Number', () => {
             expect($count('', {})).not.to.be.a('function');
             expect($count('', {})).to.be.a('number');
+        });
+
+        it('$count :: Array -> Object -> Number', () => {
+            expect($count).to.be.a('function');
+            expect($count([])).to.be.a('function');
+            expect($count([])({})).not.to.be.a('function');
+            expect($count([])({})).to.be.a('number');
+        });
+
+        it('$count :: (Array, Object) -> Number', () => {
+            expect($count([], {})).not.to.be.a('function');
+            expect($count([], {})).to.be.a('number');
         });
     });
 
@@ -86,7 +99,28 @@ describe('Projections > atoms > $count', () => {
     });
 
     describe('Immutable', () => {
-        it('it should count the values of an array correctly');
-        it('it should count the keys of an object correctly');
+        it('it should count the values of an Iterable.Keyed correctly', () => {
+            const subject = new Iterable.Keyed({
+                a: new Iterable.Keyed({a: 1, b: 2, c: 3})
+            });
+
+            expect($count('a', subject)).to.equal(3);
+        });
+
+        it('it should count the values of an Iterable.Indexed correctly', () => {
+            const subject = new Iterable.Keyed({
+                a: new Iterable.Indexed([1, 2, 3])
+            });
+
+            expect($count('a', subject)).to.equal(3);
+        });
+
+        it('it should count the values of an Iterable.Set correctly', () => {
+            const subject = new Iterable.Keyed({
+                a: new Iterable.Set([1, 2, 3])
+            });
+
+            expect($count('a', subject)).to.equal(3);
+        });
     });
 });
