@@ -4,3 +4,6 @@
 * [Projections](docs/projections.md)
    * [$get](src/projections/atoms/get/index.md)
    * [$count](src/projections/atoms/count/index.md)
+   * [$contains](src/projections/atoms/contains/index.md)
+   * [$head](src/projections/atoms/head/index.md)
+   * [$last](src/projections/atoms/last/index.md)

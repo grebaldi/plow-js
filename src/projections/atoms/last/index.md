@@ -1,6 +1,6 @@
-# $head projection
+# $last projection
 
-> Returns the head of a list inside of a structure addressed by `path`
+> Returns the last element of a list inside of a structure addressed by `path`
 
 ## Signature
 
@@ -30,5 +30,5 @@ const myObject = {
 	}
 };
 
-$head('rooms.kitchen.refridgerator', myObject); // returns 'eggs'
+$last('rooms.kitchen.refridgerator', myObject); // returns 'milk'
 ```
