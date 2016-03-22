@@ -27,20 +27,20 @@ describe('Projections > Atoms > $contains', () => {
         it('$contains :: * -> Array -> Object -> Boolean', () => {
             expect($contains).to.be.a('function');
             expect($contains(NaN)).to.be.a('function');
-            expect($contains(NaN)('')).to.be.a('function');
-            expect($contains(NaN)('')({})).not.to.be.a('function');
-            expect($contains(NaN)('')({})).to.be.a('boolean');
+            expect($contains(NaN)([])).to.be.a('function');
+            expect($contains(NaN)([])({})).not.to.be.a('function');
+            expect($contains(NaN)([])({})).to.be.a('boolean');
         });
 
         it('$contains :: (*, Array) -> Object -> Boolean', () => {
-            expect($contains(NaN, '')).to.be.a('function');
-            expect($contains(NaN, '')({})).not.to.be.a('function');
-            expect($contains(NaN, '')({})).to.be.a('boolean');
+            expect($contains(NaN, [])).to.be.a('function');
+            expect($contains(NaN, [])({})).not.to.be.a('function');
+            expect($contains(NaN, [])({})).to.be.a('boolean');
         });
 
         it('$contains :: (*, Array, Object) -> Boolean', () => {
-            expect($contains(NaN, '', {})).not.to.be.a('function');
-            expect($contains(NaN, '', {})).to.be.a('boolean');
+            expect($contains(NaN, [], {})).not.to.be.a('function');
+            expect($contains(NaN, [], {})).to.be.a('boolean');
         });
     });
 

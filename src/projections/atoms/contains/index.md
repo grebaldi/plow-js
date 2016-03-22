@@ -6,7 +6,7 @@
 
 **value** *(Any)* - The value to search for
 
-**path** *(String/Array)* - Path to the property, that should be counted
+**path** *(String/Array)* - Path to the property to search in
 
 **subject** *(Object)* - The object that contains the requested value
 
