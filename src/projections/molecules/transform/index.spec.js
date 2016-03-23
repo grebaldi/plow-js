@@ -74,10 +74,4 @@ describe('Projections > Molecules > $transform', () => {
             })
         });
     });
-
-    describe('Immutable', () => {
-        it('should return an empty object, if the shape is empty as well');
-        it('should return the shape if it consists purely of plain values');
-        it('should return the shape with all of its function-values resolved');
-    });
 });

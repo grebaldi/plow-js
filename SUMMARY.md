@@ -8,3 +8,4 @@
    * [$head](src/projections/atoms/head/index.md)
    * [$last](src/projections/atoms/last/index.md)
    * [$map](src/projections/atoms/map/index.md)
+   * [$transform](src/projections/atoms/transform/index.md)
