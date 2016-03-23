@@ -9,3 +9,4 @@
    * [$last](src/projections/atoms/last/index.md)
    * [$map](src/projections/atoms/map/index.md)
    * [$transform](src/projections/atoms/transform/index.md)
+   * [$resolve](src/projections/atoms/resolve/index.md)
