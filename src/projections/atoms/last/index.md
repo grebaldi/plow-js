@@ -21,7 +21,7 @@ Array -> Object -> *
 const myObject = {
 	rooms: {
 		kitchen: {
-			refridgerator: [
+			refrigerator: [
 				'eggs',
 				'beer',
 				'milk'
@@ -30,5 +30,5 @@ const myObject = {
 	}
 };
 
-$last('rooms.kitchen.refridgerator', myObject); // returns 'milk'
+$last('rooms.kitchen.refrigerator', myObject); // returns 'milk'
 ```

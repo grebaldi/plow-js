@@ -48,7 +48,7 @@ const state = {
         kitchen: {
             light: 'off',
             door: 'closed',
-            refridgerator: ['beer']
+            refrigerator: ['beer']
         },
         living: {
             tv: 'off'
@@ -70,9 +70,9 @@ const newState = $merge('rooms.kitchen', {
 Well that was easy... Now let's grab a beer, turn the light off and the TV on:
 
 ```js
-const beer = $head('rooms.kitchen.refridgerator', state);
+const beer = $head('rooms.kitchen.refrigerator', state);
 const newState = $all(
-    $set('rooms.kitchen.refridgerator', []),
+    $set('rooms.kitchen.refrigerator', []),
     $set('rooms.kitchen.light', 'off'),
     $set('rooms.living.tv', 'on'),
     state

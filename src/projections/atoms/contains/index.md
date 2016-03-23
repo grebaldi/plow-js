@@ -25,7 +25,7 @@
 const myObject = {
 	rooms: {
 		kitchen: {
-			refridgerator: [
+			refrigerator: [
 				'eggs',
 				'beer',
 				'milk'
@@ -34,6 +34,6 @@ const myObject = {
 	}
 };
 
-$contains('beer', 'rooms.kitchen.refridgerator', myObject); // returns true
-$contains('wine', 'rooms.kitchen.refridgerator', myObject); // returns false
+$contains('beer', 'rooms.kitchen.refrigerator', myObject); // returns true
+$contains('wine', 'rooms.kitchen.refrigerator', myObject); // returns false
 ```

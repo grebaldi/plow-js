@@ -21,7 +21,7 @@ Array -> Object -> *
 const myObject = {
 	rooms: {
 		kitchen: {
-			refridgerator: [
+			refrigerator: [
 				'eggs',
 				'beer',
 				'milk'
@@ -30,5 +30,5 @@ const myObject = {
 	}
 };
 
-$get('rooms.kitchen.refridgerator.1', myObject); // returns 'beer'
+$get('rooms.kitchen.refrigerator.1', myObject); // returns 'beer'
 ```

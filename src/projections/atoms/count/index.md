@@ -21,7 +21,7 @@ Array -> Object -> Number
 const myObject = {
 	rooms: {
 		kitchen: {
-			refridgerator: [
+			refrigerator: [
 				'eggs',
 				'beer',
 				'milk'
@@ -30,5 +30,5 @@ const myObject = {
 	}
 };
 
-$count('rooms.kitchen.refridgerator', myObject); // returns 3
+$count('rooms.kitchen.refrigerator', myObject); // returns 3
 ```

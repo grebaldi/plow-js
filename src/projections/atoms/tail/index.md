@@ -1,6 +1,6 @@
-# $head projection
+# $tail projection
 
-> Returns the head of a list inside of a structure addressed by `path`
+> Returns the tail of a list inside of a structure addressed by `path`
 
 ## Signature
 
@@ -30,5 +30,5 @@ const myObject = {
 	}
 };
 
-$head('rooms.kitchen.refrigerator', myObject); // returns 'eggs'
+$tail('rooms.kitchen.refrigerator', myObject); // returns ['beer', 'milk']
 ```
