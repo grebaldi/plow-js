@@ -11,3 +11,6 @@
    * [$transform](src/projections/molecules/transform/index.md)
    * [$resolve](src/projections/molecules/resolve/index.md)
    * [$tail](src/projections/atoms/tail/index.md)
+   * [$and](src/projections/atoms/and/index.md)
+   * [$or](src/projections/atoms/or/index.md)
+   * [$not](src/projections/atoms/not/index.md)
