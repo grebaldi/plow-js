@@ -19,8 +19,8 @@ Array -> Object -> Object
 **EXAMPLE**
 ```js
 const myObject = {
-    itemsInTheFridge: ['eggs', 'beer', 'milk']
+    itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
-$drop('itemsInTheFridge.1', myObject); // returns { itemsInTheFridge: ['eggs', 'milk'] }
+$drop('itemsInTheFrige.1', myObject); // returns { itemsInTheFrige: ['eggs', 'milk'] }
 ```

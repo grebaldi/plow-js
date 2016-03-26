@@ -23,10 +23,10 @@ Array -> * -> Object -> Object
 **EXAMPLE**
 ```js
 const myObject = {
-    itemsInTheFridge: ['eggs', 'beer', 'milk']
+    itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
-$add('itemsInTheFridge', 'wine', myObject);
+$add('itemsInTheFrige', 'wine', myObject);
 
-// returns { itemsInTheFridge: ['eggs', 'beer', 'milk', 'wine'] }
+// returns { itemsInTheFrige: ['eggs', 'beer', 'milk', 'wine'] }
 ```

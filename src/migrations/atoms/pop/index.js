@@ -8,6 +8,10 @@ export default createPolymorphFunction(
     path => subject => {
         const target = $get(path, subject);
 
+        if (target && !Array.isArray(target) && typeof target.pop === 'function') {
+            return $set(path, target.pop(), subject);
+        }
+
         if (!Array.isArray(target)) {
             console.warn(`Cannot pop an item from a ${typeof target}.`);
             return subject;

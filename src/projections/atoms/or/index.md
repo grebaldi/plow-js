@@ -18,7 +18,7 @@
 ```js
 const myObject = {
 	allBugsFixed: false,
-    itemsInTheFridge: ['eggs', 'beer', 'milk']
+    itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
 //
@@ -26,7 +26,7 @@ const myObject = {
 //
 $or(
     $get('allBugsFixed'),
-    $contains('beer', 'itemsInTheFridge'),
+    $contains('beer', 'itemsInTheFrige'),
     myObject
 ); // returns true
 ```

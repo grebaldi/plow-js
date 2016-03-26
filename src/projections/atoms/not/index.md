@@ -17,9 +17,9 @@ Function -> Object -> *
 **EXAMPLE**
 ```js
 const myObject = {
-    itemsInTheFridge: ['eggs', 'beer', 'milk']
+    itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
-$not($contains('beer', 'itemsInTheFridge'), myObject); // returns false
-$not($contains('wine', 'itemsInTheFridge'), myObject); // returns true
+$not($contains('beer', 'itemsInTheFrige'), myObject); // returns false
+$not($contains('wine', 'itemsInTheFrige'), myObject); // returns true
 ```
