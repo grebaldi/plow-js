@@ -16,7 +16,7 @@
    * [$not](src/projections/atoms/not/index.md)
 * [Migrations](docs/migrations.md)
    * [$add](src/migrations/atoms/add/index.md)
-   * [$dop](src/migrations/atoms/drop/index.md)
+   * [$drop](src/migrations/atoms/drop/index.md)
    * [$override](src/migrations/atoms/override/index.md)
    * [$pop](src/migrations/atoms/pop/index.md)
    * [$remove](src/migrations/atoms/remove/index.md)
