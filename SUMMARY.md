@@ -17,3 +17,4 @@
 * [Migrations](docs/migrations.md)
    * [$add](src/migrations/atoms/add/index.md)
    * [$dop](src/migrations/atoms/drop/index.md)
+   * [$override](src/migrations/atoms/override/index.md)
