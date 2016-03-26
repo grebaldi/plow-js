@@ -21,3 +21,4 @@
    * [$pop](src/migrations/atoms/pop/index.md)
    * [$remove](src/migrations/atoms/remove/index.md)
    * [$set](src/migrations/atoms/set/index.md)
+   * [$shift](src/migrations/atoms/shift/index.md)
