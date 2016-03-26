@@ -25,3 +25,5 @@
    * [$unshift](src/migrations/atoms/unshift/index.md)
    * [$merge](src/migrations/molecules/merge/index.md)
    * [$toggle](src/migrations/molecules/toggle/index.md)
+* [Connections](docs/connections.md)
+   * [$all](src/connections/atoms/all/index.md)
