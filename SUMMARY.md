@@ -27,3 +27,4 @@
    * [$toggle](src/migrations/molecules/toggle/index.md)
 * [Connections](docs/connections.md)
    * [$all](src/connections/atoms/all/index.md)
+   * [$summarize](src/connections/summarize/all/index.md)
