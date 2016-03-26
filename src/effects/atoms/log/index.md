@@ -1,17 +1,18 @@
-# $all connection
+# $log effect
 
-> Performs all passed operations like a reversed compose
+> Logs and returns the `subject`
 
 ## Signature
 
-**operations** *(...Function)* - Multiple functions that take `subject` as their first and only argument
+**path** *(Object)* - An optional path to the value, that should be logged. If empty the entire `subject` gets logged
 
 **subject** *(Object)* - An object to operate on
 
 **TYPE SIGNATURES**
 ```
-...Function -> Object -> *
-(...Function, Object) -> *
+String -> Object -> Object
+(String, Object) -> Object
+Object -> Object
 ```
 
 **EXAMPLE**
@@ -27,9 +28,10 @@ const myObject = {
 $all(
     $toggle('allBugsFixed'),
     $add('itemsInTheFrige', 'beer'),
+    $log,
     myObject
 );
-// returns {
+// logs and returns {
 //     allBugsFixed: true,
 //     itemsInTheFrige: ['eggs', 'milk', 'beer']
 // }

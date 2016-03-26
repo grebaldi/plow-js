@@ -29,3 +29,5 @@
    * [$all](src/connections/atoms/all/index.md)
    * [$summarize](src/connections/atoms/summarize/index.md)
    * [$traverse](src/connections/atoms/traverse/index.md)
+* [Effects](docs/effects.md)
+   * [$log](src/effects/atoms/log/index.md)

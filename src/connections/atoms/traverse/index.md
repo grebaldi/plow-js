@@ -1,4 +1,4 @@
-# $traverse projection
+# $traverse connection
 
 > Deeply applies the `actor` function to each member of the `subject`
 

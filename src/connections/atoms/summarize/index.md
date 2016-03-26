@@ -1,4 +1,4 @@
-# $summarize projection
+# $summarize connection
 
 > Passes the results of all functions in the first parameter to the finisher function and returns
 > the finishers result

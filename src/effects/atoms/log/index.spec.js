@@ -20,6 +20,11 @@ describe('Effects > Atoms > $log', () => {
             expect($log('', {})).not.to.be.a('function');
             console.log.restore();
         });
+
+        it('$log :: Object -> Object', () => {
+            expect($log({})).not.to.be.a('function');
+            console.log.restore();
+        });
     });
 
     describe('Vanilla JS', () => {
