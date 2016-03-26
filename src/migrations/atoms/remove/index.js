@@ -16,7 +16,7 @@ export default createPolymorphFunction(
             return subject;
         }
 
-        if (Array.isArray(object)) {
+        if (typeof object.filter === 'function') {
             return $set(path, object.filter(item => item !== value), subject);
         }
 
