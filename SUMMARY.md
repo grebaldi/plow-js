@@ -24,3 +24,4 @@
    * [$shift](src/migrations/atoms/shift/index.md)
    * [$unshift](src/migrations/atoms/unshift/index.md)
    * [$merge](src/migrations/molecules/merge/index.md)
+   * [$toggle](src/migrations/molecules/toggle/index.md)
