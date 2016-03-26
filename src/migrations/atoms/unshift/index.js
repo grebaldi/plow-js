@@ -8,6 +8,10 @@ export default createPolymorphFunction(
     path => value => subject => {
         const target = $get(path, subject);
 
+        if (target && !Array.isArray(target) && typeof target.unshift === 'function') {
+            return $set(path, target.unshift(value), subject);
+        }
+
         if (typeof target !== 'object') {
             console.warn(`Cannot unshift an item to a ${typeof target}.`);
             return subject;

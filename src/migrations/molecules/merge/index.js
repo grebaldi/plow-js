@@ -18,9 +18,11 @@ const merge = (path, value, subject) => Object.keys(value).reduce(
 // Deeply merges two objects
 //
 export default createPolymorphFunction(
-    path => value => subject => merge(
-        resolveObjectPath(path),
-        value,
-        subject
-    )
+    path => value => subject => (subject && typeof subject.mergeDeepIn === 'function') ?
+        subject.mergeDeepIn(resolveObjectPath(path), value) :
+        merge(
+            resolveObjectPath(path),
+            value,
+            subject
+        )
 );

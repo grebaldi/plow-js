@@ -4,7 +4,7 @@ import {List, Stack} from 'immutable';
 
 import $shift from './index.js';
 
-describe.only('Migrations > Atoms > $shift', () => {
+describe('Migrations > Atoms > $shift', () => {
     beforeEach(function stubConsoleWarn() {
         this.sinon.stub(console, 'warn');
     });
