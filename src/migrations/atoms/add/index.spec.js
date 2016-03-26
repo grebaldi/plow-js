@@ -1,9 +1,10 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
+import {Stack, Map, OrderedSet, Set, OrderedMap, List} from 'immutable';
 
 import $add from './index.js';
 
-describe('Migrations > Atoms > $add', () => {
+describe.only('Migrations > Atoms > $add', () => {
     beforeEach(function stubConsoleWarn() {
         this.sinon.stub(console, 'warn');
     });
@@ -22,6 +23,21 @@ describe('Migrations > Atoms > $add', () => {
 
         it('$add :: (String, *,  Object) -> Object', () => {
             expect($add('', NaN, {})).not.to.be.a('function');
+        });
+
+        it('$add :: Array -> * -> Object -> Object', () => {
+            expect($add([])).to.be.a('function');
+            expect($add([])(NaN)).to.be.a('function');
+            expect($add([])(NaN)({})).not.to.be.a('function');
+        });
+
+        it('$add :: (Array, *) -> Object -> Object', () => {
+            expect($add([], NaN)).to.be.a('function');
+            expect($add([], NaN)({})).not.to.be.a('function');
+        });
+
+        it('$add :: (Array, *,  Object) -> Object', () => {
+            expect($add([], NaN, {})).not.to.be.a('function');
         });
     });
 
@@ -117,11 +133,82 @@ describe('Migrations > Atoms > $add', () => {
     });
 
     describe('Immutable', () => {
-        it('should add an item to an array');
-        it('should add an item to an object');
-        it('should do nothing and warn when the target is neither an array nor an object');
-        it('should do nothing and warn when a malformed value is trying to be added to an object');
-        it('should do nothing and warn when a malformed object is trying to be added to an object');
-        it('should do nothing and warn when an object is attempted to be overrwritten.');
+        it('should add an item to a Stack', () => {
+            const subject = new Map({
+                a: new Stack([1, 2, 3])
+            });
+
+            expect($add('a', 4, subject).toJS()).to.deep.equal({
+                a: [4, 1, 2, 3]
+            });
+        });
+
+        it('should add an item to an OrderedSet', () => {
+            const subject = new Map({
+                a: new OrderedSet([1, 2, 3])
+            });
+
+            expect($add('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4]
+            });
+        });
+
+        it('should add an item to a Set', () => {
+            const subject = new Map({
+                a: new Set([1, 2, 3])
+            });
+
+            expect($add('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4]
+            });
+        });
+
+        it('should add an item to an OrderedMap', () => {
+            const subject = new Map({
+                a: new OrderedMap({
+                    a: 1,
+                    b: 2,
+                    c: 3
+                })
+            });
+
+            expect($add('a', {d: 4}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+        });
+
+        it('should add an item to an Map', () => {
+            const subject = new Map({
+                a: new Map({
+                    a: 1,
+                    b: 2,
+                    c: 3
+                })
+            });
+
+            expect($add('a', {d: 4}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+        });
+
+        it('should add an item to an List', () => {
+            const subject = new Map({
+                a: new List([1, 2, 3])
+            });
+
+            expect($add('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4]
+            });
+        });
     });
 });

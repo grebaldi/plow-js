@@ -41,6 +41,9 @@ const recursivelySetValueInObject = (object, value, path) => {
 export default createPolymorphFunction(
     path => value => subject => {
         if (typeof subject !== 'undefined') {
+            if (typeof subject.setIn === 'function') {
+                return subject.setIn(resolveObjectPath(path), value);
+            }
             const object = JSON.parse(JSON.stringify(subject));
             return recursivelySetValueInObject(object, value, resolveObjectPath(path));
         }

@@ -17,6 +17,14 @@ export default createPolymorphFunction(
             return $set(path, [...target, value], subject);
         }
 
+        if (typeof target.push === 'function') {
+            return $set(path, target.push(value), subject);
+        }
+
+        if (typeof target.add === 'function') {
+            return $set(path, target.add(value), subject);
+        }
+
         if (typeof value !== 'object') {
             console.warn(`Only objects can be added to objects.`);
             return subject;
