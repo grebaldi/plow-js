@@ -16,3 +16,4 @@
    * [$not](src/projections/atoms/not/index.md)
 * [Migrations](docs/migrations.md)
    * [$add](src/migrations/atoms/add/index.md)
+   * [$dop](src/migrations/atoms/drop/index.md)

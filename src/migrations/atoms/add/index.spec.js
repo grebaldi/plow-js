@@ -4,7 +4,7 @@ import {Stack, Map, OrderedSet, Set, OrderedMap, List} from 'immutable';
 
 import $add from './index.js';
 
-describe.only('Migrations > Atoms > $add', () => {
+describe('Migrations > Atoms > $add', () => {
     beforeEach(function stubConsoleWarn() {
         this.sinon.stub(console, 'warn');
     });

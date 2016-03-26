@@ -9,6 +9,9 @@ import $set from '../set/index.js';
 //
 export default createPolymorphFunction(
     path => subject => {
+        if (subject && typeof subject.deleteIn === 'function') {
+            return subject.deleteIn(resolveObjectPath(path));
+        }
         const resolvedPath = resolveObjectPath(path);
         const parentPath = resolvedPath.slice(0, -1);
         const key = resolvedPath[resolvedPath.length - 1];

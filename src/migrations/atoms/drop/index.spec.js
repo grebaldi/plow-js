@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
+import {List, OrderedMap, Map} from 'immutable';
 
 import $drop from './index.js';
 
@@ -16,6 +17,15 @@ describe('Migrations > Atoms > $drop', () => {
 
         it('$drop :: (String, Object) -> Object', () => {
             expect($drop('', {})).not.to.be.a('function');
+        });
+
+        it('$drop :: Array -> Object -> Object', () => {
+            expect($drop([])).to.be.a('function');
+            expect($drop([])({})).not.to.be.a('function');
+        });
+
+        it('$drop :: (Array, Object) -> Object', () => {
+            expect($drop([], {})).not.to.be.a('function');
         });
     });
 
@@ -90,8 +100,103 @@ describe('Migrations > Atoms > $drop', () => {
     });
 
     describe('Immutable', () => {
-        it('should remove an item from an array, addressed by its path');
-        it('should remove an item from an object, addressed by its path');
-        it('should do nothing and warn, if the targets parent is neither an array nor an object');
+        it('should remove an item from a List, addressed by its path', () => {
+            const subject = new List([
+                new List([1, 2, 3, 4])
+            ]);
+
+            expect($drop('0.0', subject).toJS()).to.deep.equal([
+                [2, 3, 4]
+            ]);
+            expect($drop('0.1', subject).toJS()).to.deep.equal([
+                [1, 3, 4]
+            ]);
+            expect($drop('0.2', subject).toJS()).to.deep.equal([
+                [1, 2, 4]
+            ]);
+            expect($drop('0.3', subject).toJS()).to.deep.equal([
+                [1, 2, 3]
+            ]);
+        });
+
+        it('should remove an item from an OrderedMap, addressed by its path', () => {
+            const subject = new OrderedMap({
+                a: new OrderedMap({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($drop('a.a', subject).toJS()).to.deep.equal({
+                a: {
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($drop('a.b', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($drop('a.c', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    d: 4
+                }
+            });
+            expect($drop('a.d', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3
+                }
+            });
+        });
+
+        it('should remove an item from a Map, addressed by its path', () => {
+            const subject = new Map({
+                a: new Map({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($drop('a.a', subject).toJS()).to.deep.equal({
+                a: {
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($drop('a.b', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($drop('a.c', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    d: 4
+                }
+            });
+            expect($drop('a.d', subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3
+                }
+            });
+        });
     });
 });
