@@ -20,3 +20,4 @@
    * [$override](src/migrations/atoms/override/index.md)
    * [$pop](src/migrations/atoms/pop/index.md)
    * [$remove](src/migrations/atoms/remove/index.md)
+   * [$set](src/migrations/atoms/set/index.md)
