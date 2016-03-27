@@ -40,3 +40,11 @@ $override('rooms', { pool: {name: 'Freaking awesome pool table chamber!!!'} }, s
 // }
 
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+OrderedMap
+Map
+```
