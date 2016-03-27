@@ -38,3 +38,11 @@ $override('rooms', { kitchen: { name: 'Mighty hall of culinary awesomeness' } },
 //     living: {name: 'Living Rooms'}
 // }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Map
+OrderedMap
+```
