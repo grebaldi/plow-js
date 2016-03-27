@@ -46,3 +46,12 @@ const myObject = {
 $map('name', 'rooms', myObject); // returns {living: 'Living Room', kitchen: 'Kitchen', bath: 'Bathroom'}
 $map(x => x*2, 'randomList', myObject); // returns [2, 4, 6, 8]
 ```
+
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+Iterable.Set
+```
