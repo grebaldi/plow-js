@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Map, List, Set, OrderedSet, Iterable} from 'immutable';
+import {Map, List, Set, OrderedSet} from 'immutable';
 
 import $toggle from './index.js';
 

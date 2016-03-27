@@ -73,3 +73,11 @@ $toggle('kitchenDutyToday', 'John Schmoe', myObject); // returns { kitchenDutyTo
 const jane = $toggle('kitchenDutyToday', 'John Schmoe', 'Jane Doe', myObject); // returns { kitchenDutyToday: 'Jane Doe' }
 $toggle('kitchenDutyToday', 'John Schmoe', 'Jane Doe', jane); // returns { kitchenDutyToday: 'John Schmoe' }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Set
+OrderedSet
+```
