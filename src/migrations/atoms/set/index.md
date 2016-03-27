@@ -34,3 +34,11 @@ $set('itemsInTheFrige.1', 'wine', subject);
 //     itemsInTheFrige: ['eggs', 'wine', 'milk']
 // }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Map
+OrderedMap
+```
