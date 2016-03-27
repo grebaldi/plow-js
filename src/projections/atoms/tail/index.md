@@ -32,3 +32,11 @@ const myObject = {
 
 $tail('rooms.kitchen.refrigerator', myObject); // returns ['beer', 'milk']
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+Iterable.Set
+```
