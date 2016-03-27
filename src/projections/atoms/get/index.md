@@ -32,3 +32,11 @@ const myObject = {
 
 $get('rooms.kitchen.refrigerator.1', myObject); // returns 'beer'
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+Iterable.Set
+```
