@@ -30,3 +30,14 @@ $unshift('itemsInTheFrige', 'wine', myObject);
 
 // returns { itemsInTheFrige: ['wine', 'eggs', 'beer', 'milk'] }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Stack
+Map
+OrderedSet
+Set
+OrderedMap
+List
+```
