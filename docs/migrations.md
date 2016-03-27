@@ -8,6 +8,8 @@ A -> A
 
 Migrations are basically "mutations" on objects. Migrations take an object structure as their last parameter and return a new object of the same shape, but with some mutations performed on it.
 
+## Available migrations
+
 * [$add](../src/migrations/atoms/add/index.md)
 * [$drop](../src/migrations/atoms/drop/index.md)
 * [$override](../src/migrations/atoms/override/index.md)
