@@ -37,3 +37,10 @@ const myObject = {
 $contains('beer', 'rooms.kitchen.refrigerator', myObject); // returns true
 $contains('wine', 'rooms.kitchen.refrigerator', myObject); // returns false
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+```
