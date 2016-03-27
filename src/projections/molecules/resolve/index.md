@@ -31,3 +31,10 @@ const myObject = {
 //
 $resolve('hasKitchenDuty', myObject); // returns { name: 'John Schmoe' }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+```
