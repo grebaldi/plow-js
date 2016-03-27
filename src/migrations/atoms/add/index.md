@@ -30,3 +30,13 @@ $add('itemsInTheFrige', 'wine', myObject);
 
 // returns { itemsInTheFrige: ['eggs', 'beer', 'milk', 'wine'] }
 ```
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Stack
+Map
+OrderedSet
+Set
+OrderedMap
+List
+```
