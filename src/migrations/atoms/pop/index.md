@@ -27,3 +27,10 @@ $pop('itemsInTheFrige', subject);
 //     itemsInTheFrige: ['eggs', 'beer']
 // }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Stack
+```
