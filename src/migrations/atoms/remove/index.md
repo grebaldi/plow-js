@@ -34,3 +34,13 @@ $remove('itemsInTheFrige', 'beer', subject);
 //     itemsInTheFrige: ['eggs', 'milk', 'bacon']
 // }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Set
+Map
+OrderedSet
+OrderedMap
+```
