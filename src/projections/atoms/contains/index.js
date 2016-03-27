@@ -1,12 +1,6 @@
 import createPolymorphFunction from '../../../util/createPolymorphFunction/index.js';
 import $get from '../get/index.js';
 
-// const objectContains = object => {
-//     const keys = Object.keys(object);
-//
-//     return
-// }
-
 //
 // Checks if a structure contains an item
 //
@@ -14,8 +8,13 @@ export default createPolymorphFunction(
     value => path => subject => {
         const object = $get(path, subject);
 
+
         if (typeof object !== 'object' || !Boolean(object)) {
             return false;
+        }
+
+        if (typeof object.includes === 'function') {
+            return object.includes(value);
         }
 
         return Array.isArray(object)

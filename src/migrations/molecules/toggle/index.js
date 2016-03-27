@@ -50,6 +50,31 @@ export default createPolymorphFunction(
             if (typeof fallback === 'object') {
                 const target = $target(fallback);
 
+                //
+                // Handle Immutable JS
+                //
+                if (target && typeof target.delete === 'function') {
+                    if ($contains(value, path, fallback)) {
+                        // List
+                        if (typeof target.push === 'function') {
+                            return $remove(path, value, fallback);
+                        }
+
+                        // Sets
+                        return $set(path, target.delete(value), fallback);
+                    }
+
+                    // List
+                    if (typeof target.push === 'function') {
+                        return $set(path, target.push(value), fallback);
+                    }
+
+                    // Sets
+                    if (typeof target.add === 'function') {
+                        return $set(path, target.add(value), fallback);
+                    }
+                }
+
                 if (Array.isArray(target)) {
                     if ($contains(value, path, fallback)) {
                         return $remove(path, value, fallback);

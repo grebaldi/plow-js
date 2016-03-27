@@ -1,19 +1,22 @@
 import createPolymorphFunction from '../../../util/createPolymorphFunction/index.js';
 import $get from '../get/index.js';
 
+//
+// Returns a structure of values in `subject`, addressed by a property path or a mapper function
+//
 export default createPolymorphFunction(
-    property => path => subject => {
+    mapper => path => subject => {
         const object = $get(path, subject);
 
         if (object && typeof object === 'object') {
-            if (Array.isArray(object)) {
-                return object.map($get(property));
+            if (typeof object.map === 'function') {
+                return object.map($get(mapper));
             }
 
             const result = {};
 
             Object.keys(object).forEach(key => {
-                result[key] = $get(property, object[key]);
+                result[key] = $get(mapper, object[key]);
             });
 
             return result;

@@ -48,7 +48,7 @@ const state = {
         kitchen: {
             light: 'off',
             door: 'closed',
-            refridgerator: ['beer']
+            refrigerator: ['beer']
         },
         living: {
             tv: 'off'
@@ -70,11 +70,22 @@ const newState = $merge('rooms.kitchen', {
 Well that was easy... Now let's grab a beer, turn the light off and the TV on:
 
 ```js
-const beer = $head('rooms.kitchen.refridgerator', state);
+const beer = $head('rooms.kitchen.refrigerator', state);
 const newState = $all(
-    $set('rooms.kitchen.refridgerator', []),
+    $set('rooms.kitchen.refrigerator', []),
     $set('rooms.kitchen.light', 'off'),
     $set('rooms.living.tv', 'on'),
     state
 );
 ```
+
+## License
+
+The MIT License (MIT)
+Copyright (c) 2016 Wilhelm Behncke
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

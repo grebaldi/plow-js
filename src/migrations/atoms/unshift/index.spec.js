@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
+import {Stack, Map, OrderedSet, Set, OrderedMap, List} from 'immutable';
 
 import $unshift from './index.js';
 
@@ -22,6 +23,21 @@ describe('Migrations > Atoms > $unshift', () => {
 
         it('$unshift :: (String, *,  Object) -> Object', () => {
             expect($unshift('', NaN, {})).not.to.be.a('function');
+        });
+
+        it('$unshift :: Array -> * -> Object -> Object', () => {
+            expect($unshift([])).to.be.a('function');
+            expect($unshift([])(NaN)).to.be.a('function');
+            expect($unshift([])(NaN)({})).not.to.be.a('function');
+        });
+
+        it('$unshift :: (Array, *) -> Object -> Object', () => {
+            expect($unshift([], NaN)).to.be.a('function');
+            expect($unshift([], NaN)({})).not.to.be.a('function');
+        });
+
+        it('$unshift :: (Array, *,  Object) -> Object', () => {
+            expect($unshift([], NaN, {})).not.to.be.a('function');
         });
     });
 
@@ -117,11 +133,24 @@ describe('Migrations > Atoms > $unshift', () => {
     });
 
     describe('Immutable', () => {
-        it('should add an item to the beginning of an array');
-        it('should add an item to an object');
-        it('should do nothing and warn when the target is neither an array nor an object');
-        it('should do nothing and warn when a malformed value is trying to be added to an object');
-        it('should do nothing and warn when a malformed object is trying to be added to an object');
-        it('should do nothing and warn when an object is attempted to be overrwritten.');
+        it('should add an item to the beginning of a Stack', () => {
+            const subject = new Map({
+                a: new Stack([1, 2, 3])
+            });
+
+            expect($unshift('a', 4, subject).toJS()).to.deep.equal({
+                a: [4, 1, 2, 3]
+            });
+        });
+
+        it('should add an item to the beginning of a List', () => {
+            const subject = new Map({
+                a: new List([1, 2, 3])
+            });
+
+            expect($unshift('a', 4, subject).toJS()).to.deep.equal({
+                a: [4, 1, 2, 3]
+            });
+        });
     });
 });

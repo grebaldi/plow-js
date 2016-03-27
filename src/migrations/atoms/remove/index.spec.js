@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
+import {List, Set, Map, OrderedSet, OrderedMap} from 'immutable';
 
 import $remove from './index.js';
 
@@ -22,6 +23,21 @@ describe('Migrations > Atoms > $remove', () => {
 
         it('$remove :: (String, *,  Object) -> Object', () => {
             expect($remove('', NaN, {})).not.to.be.a('function');
+        });
+
+        it('$remove :: Array -> * -> Object -> Object', () => {
+            expect($remove([])).to.be.a('function');
+            expect($remove([])(NaN)).to.be.a('function');
+            expect($remove([])(NaN)({})).not.to.be.a('function');
+        });
+
+        it('$remove :: (Array, *) -> Object -> Object', () => {
+            expect($remove([], NaN)).to.be.a('function');
+            expect($remove([], NaN)({})).not.to.be.a('function');
+        });
+
+        it('$remove :: (Array, *,  Object) -> Object', () => {
+            expect($remove([], NaN, {})).not.to.be.a('function');
         });
     });
 
@@ -88,8 +104,130 @@ describe('Migrations > Atoms > $remove', () => {
     });
 
     describe('Immutable', () => {
-        it('should remove all occurences of an item from an array, addressed by its value');
-        it('should remove an item from an object, addressed by a key/value pair');
-        it('should do nothing and warn, if the target is neither an array nor an object');
+        it('should remove all occurences of an item from a List, addressed by its value', () => {
+            const subject = new Map({
+                a: new List([1, 2, 3, 4, 2, 5, 3, 3])
+            });
+
+            expect($remove('a', 1, subject).toJS()).to.deep.equal({
+                a: [2, 3, 4, 2, 5, 3, 3]
+            });
+            expect($remove('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 3, 4, 5, 3, 3]
+            });
+            expect($remove('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4, 2, 5]
+            });
+            expect($remove('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 2, 5, 3, 3]
+            });
+            expect($remove('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 2, 3, 3]
+            });
+        });
+
+        it('should remove all occurences of an item from a Set, addressed by its value', () => {
+            const subject = new Map({
+                a: new Set([1, 2, 3, 4, 5])
+            });
+
+            expect($remove('a', 1, subject).toJS()).to.deep.equal({
+                a: [2, 3, 4, 5]
+            });
+            expect($remove('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 3, 4, 5]
+            });
+            expect($remove('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4, 5]
+            });
+            expect($remove('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 5]
+            });
+            expect($remove('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4]
+            });
+        });
+
+        it('should remove all occurences of an item from a Map, addressed by its value', () => {
+            const subject = new Map({
+                a: new Map({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4,
+                    e: 5,
+                    f: 3,
+                    g: 2
+                })
+            });
+
+            expect($remove('a', 1, subject).toJS()).to.deep.equal({
+                a: { b: 2, c: 3, d: 4, e: 5, f: 3, g: 2 }
+            });
+            expect($remove('a', 2, subject).toJS()).to.deep.equal({
+                a: { a: 1, c: 3, d: 4, e: 5, f: 3 }
+            });
+            expect($remove('a', 3, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, d: 4, e: 5, g: 2 }
+            });
+            expect($remove('a', 4, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, c: 3, e: 5, f: 3, g: 2 }
+            });
+            expect($remove('a', 5, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, c: 3, d: 4, f: 3, g: 2 }
+            });
+        });
+
+        it('should remove all occurences of an item from an OrderedSet, addressed by its value', () => {
+            const subject = new Map({
+                a: new OrderedSet([1, 2, 3, 4, 5])
+            });
+
+            expect($remove('a', 1, subject).toJS()).to.deep.equal({
+                a: [2, 3, 4, 5]
+            });
+            expect($remove('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 3, 4, 5]
+            });
+            expect($remove('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4, 5]
+            });
+            expect($remove('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 5]
+            });
+            expect($remove('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4]
+            });
+        });
+
+        it('should remove all occurences of an item from an OrderedMap, addressed by its value', () => {
+            const subject = new Map({
+                a: new OrderedMap({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4,
+                    e: 5,
+                    f: 3,
+                    g: 2
+                })
+            });
+
+            expect($remove('a', 1, subject).toJS()).to.deep.equal({
+                a: { b: 2, c: 3, d: 4, e: 5, f: 3, g: 2 }
+            });
+            expect($remove('a', 2, subject).toJS()).to.deep.equal({
+                a: { a: 1, c: 3, d: 4, e: 5, f: 3 }
+            });
+            expect($remove('a', 3, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, d: 4, e: 5, g: 2 }
+            });
+            expect($remove('a', 4, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, c: 3, e: 5, f: 3, g: 2 }
+            });
+            expect($remove('a', 5, subject).toJS()).to.deep.equal({
+                a: { a: 1, b: 2, c: 3, d: 4, f: 3, g: 2 }
+            });
+        });
     });
 });

@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {Map, List, Set, OrderedSet} from 'immutable';
 
 import $toggle from './index.js';
 
@@ -53,6 +54,57 @@ describe('Migrations > Molecules > $toggle', () => {
         it('$toggle :: (String, *, *, Object) -> Object', () => {
             expect($toggle('', NaN, NaN, {})).not.to.be.a('function');
             expect($toggle('', NaN, NaN, {})).to.be.an('object');
+        });
+
+        it('$toggle :: Array -> Object -> Object !!!(when first parameter leads to Boolean)', () => {
+            expect($toggle(['a'])).to.be.a('function');
+            expect($toggle(['a'])({a: true})).not.to.be.a('function');
+            expect($toggle(['a'])({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, Object) -> Object !!!(when first parameter leads to Boolean)', () => {
+            expect($toggle(['a'], {a: true})).not.to.be.a('function');
+            expect($toggle(['a'], {a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: Array -> * -> Object -> Object', () => {
+            expect($toggle(['a'])(NaN)).to.be.a('function');
+            expect($toggle(['a'])(NaN)({a: true})).not.to.be.a('function');
+            expect($toggle(['a'])(NaN)({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, *) -> Object -> Object', () => {
+            expect($toggle(['a'], NaN)).to.be.a('function');
+            expect($toggle(['a'], NaN)({a: true})).not.to.be.a('function');
+            expect($toggle(['a'], NaN)({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, *, Object) -> Object', () => {
+            expect($toggle(['a'], NaN, {a: true})).not.to.be.a('function');
+            expect($toggle(['a'], NaN, {a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: Array -> * -> * -> Object -> Object', () => {
+            expect($toggle(['a'])(NaN)(NaN)).to.be.a('function');
+            expect($toggle(['a'])(NaN)(NaN)({a: true})).not.to.be.a('function');
+            expect($toggle(['a'])(NaN)(NaN)({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, *) -> * -> Object -> Object', () => {
+            expect($toggle(['a'], NaN)(NaN)).to.be.a('function');
+            expect($toggle(['a'], NaN)(NaN)({a: true})).not.to.be.a('function');
+            expect($toggle(['a'], NaN)(NaN)({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, *, *) -> Object -> Object', () => {
+            expect($toggle(['a'], NaN, NaN)).to.be.a('function');
+            expect($toggle(['a'], NaN, NaN)({a: true})).not.to.be.a('function');
+            expect($toggle(['a'], NaN, NaN)({a: true})).to.be.an('object');
+        });
+
+        it('$toggle :: (Array, *, *, Object) -> Object', () => {
+            expect($toggle(['a'], NaN, NaN, {a: true})).not.to.be.a('function');
+            expect($toggle(['a'], NaN, NaN, {a: true})).to.be.an('object');
         });
     });
 
@@ -126,11 +178,150 @@ describe('Migrations > Molecules > $toggle', () => {
     });
 
     describe('Immutable', () => {
-        it('should set the target to true, if the target is boolean and its value is false');
-        it('should set the target to false, if the target is boolean and its value is true');
-        it('should add an item to the target, if the target is an array and does not contain the item');
-        it('should remove an item from the target, if the target is an array and contains the item');
-        it('should set the target to the value, if the target is neither array nor boolean and does not equal the value');
-        it('should set the target to the fallback, if the target is neither array nor boolean and equals the value');
+        it('should set the target to true, if the target is boolean and its value is false', () => {
+            const subject = new Map({
+                test1: new List([true, true, false]),
+                test2: new Map({ a: true, b: true, c: false })
+            });
+
+            expect($toggle('test1.2', subject).toJS()).to.deep.equal({
+                test1: [true, true, true],
+                test2: { a: true, b: true, c: false }
+            });
+            expect($toggle('test2.c', subject).toJS()).to.deep.equal({
+                test1: [true, true, false],
+                test2: { a: true, b: true, c: true }
+            });
+        });
+
+        it('should set the target to false, if the target is boolean and its value is true', () => {
+            const subject = new Map({
+                test1: new List([false, false, true]),
+                test2: new Map({ a: false, b: false, c: true })
+            });
+
+            expect($toggle('test1.2', subject).toJS()).to.deep.equal({
+                test1: [false, false, false],
+                test2: { a: false, b: false, c: true }
+            });
+            expect($toggle('test2.c', subject).toJS()).to.deep.equal({
+                test1: [false, false, true],
+                test2: { a: false, b: false, c: false }
+            });
+        });
+
+        it('should add an item to the target, if the target is a List and does not contain the item', () => {
+            const subject = new Map({
+                a: new List([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 5]
+            });
+            expect($toggle('a', 6, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 6]
+            });
+            expect($toggle('a', 7, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 7]
+            });
+            expect($toggle('a', 8, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 8]
+            });
+        });
+
+        it('should add an item to the target, if the target is a Set and does not contain the item', () => {
+            const subject = new Map({
+                a: new Set([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 5]
+            });
+            expect($toggle('a', 6, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 6]
+            });
+            expect($toggle('a', 7, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 7]
+            });
+            expect($toggle('a', 8, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 8]
+            });
+        });
+
+        it('should add an item to the target, if the target is an OrderedSet and does not contain the item', () => {
+            const subject = new Map({
+                a: new OrderedSet([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 5, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 5]
+            });
+            expect($toggle('a', 6, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 6]
+            });
+            expect($toggle('a', 7, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 7]
+            });
+            expect($toggle('a', 8, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3, 4, 8]
+            });
+        });
+
+        it('should remove an item from the target, if the target is a List and does contain the item', () => {
+            const subject = new Map({
+                a: new List([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 1, subject).toJS()).to.deep.equal({
+                a: [2, 3, 4]
+            });
+            expect($toggle('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 3, 4]
+            });
+            expect($toggle('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4]
+            });
+            expect($toggle('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3]
+            });
+        });
+
+        it('should remove an item from the target, if the target is a Set and does contain the item', () => {
+            const subject = new Map({
+                a: new Set([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 1, subject).toJS()).to.deep.equal({
+                a: [4, 2, 3]
+            });
+            expect($toggle('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 4, 3]
+            });
+            expect($toggle('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4]
+            });
+            expect($toggle('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3]
+            });
+        });
+
+        it('should remove an item from the target, if the target is an OrderedSet and does contain the item', () => {
+            const subject = new Map({
+                a: new OrderedSet([1, 2, 3, 4])
+            });
+
+            expect($toggle('a', 1, subject).toJS()).to.deep.equal({
+                a: [2, 3, 4]
+            });
+            expect($toggle('a', 2, subject).toJS()).to.deep.equal({
+                a: [1, 3, 4]
+            });
+            expect($toggle('a', 3, subject).toJS()).to.deep.equal({
+                a: [1, 2, 4]
+            });
+            expect($toggle('a', 4, subject).toJS()).to.deep.equal({
+                a: [1, 2, 3]
+            });
+        });
     });
 });

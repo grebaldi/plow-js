@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {List, OrderedMap, Map} from 'immutable';
 
 import $override from './index.js';
 
@@ -17,6 +18,21 @@ describe('Migrations > Atoms > $override', () => {
 
         it('$override :: (String, Object, Object) -> Object', () => {
             expect($override('', {}, {})).not.to.be.a('function');
+        });
+
+        it('$override :: Array -> Object -> Object -> Object', () => {
+            expect($override([])).to.be.a('function');
+            expect($override([])({})).to.be.a('function');
+            expect($override([])({})({})).not.to.be.a('function');
+        });
+
+        it('$override :: (Array, Object) -> Object -> Object', () => {
+            expect($override([], {})).to.be.a('function');
+            expect($override([], {})({})).not.to.be.a('function');
+        });
+
+        it('$override :: (Array, Object, Object) -> Object', () => {
+            expect($override([], {}, {})).not.to.be.a('function');
         });
     });
 
@@ -78,10 +94,147 @@ describe('Migrations > Atoms > $override', () => {
     });
 
     describe('Immutable', () => {
-        it('should shallowly add properties to an object');
-        it('should shallowly overwrite properties in an object without removing any');
-        it('should shallowly add items to an array');
-        it('should always add items at the highest index+1 of an array, even when the path suggests a higher index');
-        it('should shallowly overwrite items of an array without removing any');
+        it('should shallowly add properties to a List', () => {
+            const subject = new List([
+                new List([1, 2, 3, 4])
+            ]);
+
+            expect($override('0', [1, 2, 3, 4, 5], subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4, 5]
+            ]);
+        });
+
+        it('should shallowly overwrite properties in a List', () => {
+            const subject = new List([
+                new List([1, 2, 3, 4])
+            ]);
+
+            expect($override('0', [2], subject).toJS()).to.deep.equal([
+                [2, 2, 3, 4]
+            ]);
+            expect($override('0', [2, 2], subject).toJS()).to.deep.equal([
+                [2, 2, 3, 4]
+            ]);
+            expect($override('0', [2, 2, 2], subject).toJS()).to.deep.equal([
+                [2, 2, 2, 4]
+            ]);
+            expect($override('0', [2, 2, 2, 2], subject).toJS()).to.deep.equal([
+                [2, 2, 2, 2]
+            ]);
+        });
+
+        it('should shallowly add properties to an OrderedMap', () => {
+            const subject = new OrderedMap({
+                a: new OrderedMap({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($override('a', { e: 5 }, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4,
+                    e: 5
+                }
+            })
+        });
+
+        it('should shallowly overwrite properties in an OrderedMap', () => {
+            const subject = new OrderedMap({
+                a: new OrderedMap({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($override('a', {a: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($override('a', {a: 2, c: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 2,
+                    d: 4
+                }
+            });
+            expect($override('a', {a: 2, c: 2, d: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 2,
+                    d: 2
+                }
+            });
+        });
+
+        it('should shallowly add properties to a Map', () => {
+            const subject = new Map({
+                a: new Map({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($override('a', { e: 5 }, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4,
+                    e: 5
+                }
+            })
+        });
+
+        it('should shallowly overwrite properties in a Map', () => {
+            const subject = new Map({
+                a: new Map({
+                    a: 1,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                })
+            });
+
+            expect($override('a', {a: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 3,
+                    d: 4
+                }
+            });
+            expect($override('a', {a: 2, c: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 2,
+                    d: 4
+                }
+            });
+            expect($override('a', {a: 2, c: 2, d: 2}, subject).toJS()).to.deep.equal({
+                a: {
+                    a: 2,
+                    b: 2,
+                    c: 2,
+                    d: 2
+                }
+            });
+        });
     });
 });

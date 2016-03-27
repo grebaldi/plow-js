@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
+import {List, Stack} from 'immutable';
 
 import $pop from './index.js';
 
@@ -16,6 +17,15 @@ describe('Migrations > Atoms > $pop', () => {
 
         it('$pop :: (String, Object) -> Object', () => {
             expect($pop('', {})).not.to.be.a('function');
+        });
+
+        it('$pop :: Array -> Object -> Object', () => {
+            expect($pop([])).to.be.a('function');
+            expect($pop([])({})).not.to.be.a('function');
+        });
+
+        it('$pop :: (Array, Object) -> Object', () => {
+            expect($pop([], {})).not.to.be.a('function');
         });
     });
 
@@ -58,7 +68,72 @@ describe('Migrations > Atoms > $pop', () => {
     });
 
     describe('Immutable', () => {
-        it('should remove an item from the end an array');
-        it('should do nothing and warn when the target is not an array');
+        it('should remove an item from the end of a List', () => {
+            const subject = new List([
+                new List([1, 2, 3, 4]),
+                new List([1, 2, 3]),
+                new List([1, 2]),
+                new List([1])
+            ]);
+
+            expect($pop('0', subject).toJS()).to.deep.equal([
+                [1, 2, 3],
+                [1, 2, 3],
+                [1, 2],
+                [1]
+            ]);
+            expect($pop('1', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [1, 2],
+                [1, 2],
+                [1]
+            ]);
+            expect($pop('2', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [1, 2, 3],
+                [1],
+                [1]
+            ]);
+            expect($pop('3', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [1, 2, 3],
+                [1, 2],
+                []
+            ]);
+        });
+
+        it('should remove an item from the beginning of an Stack', () => {
+            const subject = new List([
+                new Stack([1, 2, 3, 4]),
+                new Stack([1, 2, 3]),
+                new Stack([1, 2]),
+                new Stack([1])
+            ]);
+
+            expect($pop('0', subject).toJS()).to.deep.equal([
+                [2, 3, 4],
+                [1, 2, 3],
+                [1, 2],
+                [1]
+            ]);
+            expect($pop('1', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [2, 3],
+                [1, 2],
+                [1]
+            ]);
+            expect($pop('2', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [1, 2, 3],
+                [2],
+                [1]
+            ]);
+            expect($pop('3', subject).toJS()).to.deep.equal([
+                [1, 2, 3, 4],
+                [1, 2, 3],
+                [1, 2],
+                []
+            ]);
+        });
     });
 });

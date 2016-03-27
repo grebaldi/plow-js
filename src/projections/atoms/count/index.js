@@ -12,6 +12,10 @@ export default createPolymorphFunction(
             return 0;
         }
 
+        if (typeof object.count === 'function') {
+            return object.count();
+        }
+
         if (Array.isArray(object) || typeof object === 'string') {
             return object.length;
         }

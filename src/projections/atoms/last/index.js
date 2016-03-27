@@ -9,6 +9,10 @@ export default createPolymorphFunction(
     path => subject => {
         const target = $get(path, subject);
 
+        if (target && typeof target.last === 'function') {
+            return target.last();
+        }
+
         if (!target || !Array.isArray(target)) {
             console.warn(`$last expects the target to be an array, got ${typeof target} instead`);
             return null;

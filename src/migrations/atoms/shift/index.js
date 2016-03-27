@@ -8,6 +8,10 @@ export default createPolymorphFunction(
     path => subject => {
         const target = $get(path, subject);
 
+        if (target && !Array.isArray(target) && typeof target.shift === 'function') {
+            return $set(path, target.shift(), subject);
+        }
+
         if (!Array.isArray(target)) {
             console.warn(`Cannot shift an item from a ${typeof target}.`);
             return subject;
