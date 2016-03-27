@@ -32,3 +32,11 @@ const myObject = {
 
 $head('rooms.kitchen.refrigerator', myObject); // returns 'eggs'
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+Iterable.Indexed
+Iterable.Keyed
+Iterable.Set
+```
