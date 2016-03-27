@@ -24,3 +24,11 @@ const myObject = {
 
 $drop('itemsInTheFrige.1', myObject); // returns { itemsInTheFrige: ['eggs', 'milk'] }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+OrderedMap
+Map
+```
