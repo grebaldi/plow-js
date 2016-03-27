@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/grebaldi/plow-js.svg?branch=master)](https://travis-ci.org/grebaldi/plow-js)
+
 # Plow JS
 
 > Functional operations on large immutable objects
