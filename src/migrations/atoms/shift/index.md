@@ -27,3 +27,10 @@ $shift('itemsInTheFrige', subject);
 //     itemsInTheFrige: ['beer', 'milk']
 // }
 ```
+
+**IMMUTABLE JS SUPPORT**
+*the following types are supported for values targeted by `path`*:
+```
+List
+Stack
+```
