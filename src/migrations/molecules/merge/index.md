@@ -22,20 +22,22 @@ Array -> Object -> Object -> Object
 
 **EXAMPLE**
 ```js
-const myObject = {
+const subject = {
     rooms: {
-        kitchen: {name: 'Kitchen'},
-        living: {name: 'Living Rooms'}
+        kitchen: {name: 'Kitchen', color: 'brown'},
+        living: {name: 'Living Rooms', color: 'red'}
     }
 };
 
 //
 // Naming is important
 //
-$override('rooms', { kitchen: { name: 'Mighty hall of culinary awesomeness' } }, subject);
+$merge('rooms', { kitchen: { name: 'Mighty hall of culinary awesomeness', chairColor: 'white' } }, subject);
 // returns {
-//     kitchen: {name: 'Mighty hall of culinary awesomeness'},
-//     living: {name: 'Living Rooms'}
+//     rooms: {
+//          kitchen: {name: 'Mighty hall of culinary awesomeness', color: 'brown', chairColor: 'white'},
+//          living: {name: 'Living Rooms', color: 'red'}
+//     }
 // }
 ```
 
