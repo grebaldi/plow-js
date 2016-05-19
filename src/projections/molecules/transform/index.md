@@ -33,10 +33,10 @@ const myObject = {
 $transform({
     who: $get('people.roomMate1'),
     where: $get('rooms.living.name')
-}); // returns { who: 'Jane Doe', where: 'Living Room' }
+}, myObject); // returns { who: 'Jane Doe', where: 'Living Room' }
 
 $transform({
     who: $get('people.roomMate2'),
     where: $get('rooms.kitchen.name')
-}); // returns { who: 'John Schmoe', where: 'Kitchen' }
+}, myObject); // returns { who: 'John Schmoe', where: 'Kitchen' }
 ```
