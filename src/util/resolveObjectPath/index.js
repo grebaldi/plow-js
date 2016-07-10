@@ -13,7 +13,7 @@ export default path => {
     return path.split('.').map(part => {
         const partAsInteger = parseInt(part);
 
-        if (!isNaN(partAsInteger)) {
+        if (!isNaN(partAsInteger) && String(partAsInteger) === part) {
             return partAsInteger;
         }
 
