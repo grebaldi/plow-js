@@ -103,6 +103,36 @@ describe('Migrations > Atoms > $merge', () => {
             const subject = undefined;
             expect($merge('some.path', {some: 'value'}, subject)).to.be.an('undefined');
         });
+
+		it('should not split up keys in deep object structures (bugfix #12)', () => {
+			const subject = {
+				test: {
+					a: {
+						b: {
+							cdef: 'c'
+						}
+					}
+				}
+			};
+			const result = $merge('test', {
+				a: {
+					b: {
+						cdef: 'foo'
+					}
+				}
+			}, subject);
+
+			expect(result.test.a.b.c).to.be.an('undefined');
+			expect(result).to.deep.equal({
+				test: {
+					a: {
+						b: {
+							cdef: 'foo'
+						}
+					}
+				}
+			});
+		});
     });
 
     describe('Immutable', () => {

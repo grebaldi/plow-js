@@ -9,7 +9,7 @@ const merge = (path, value, subject) => Object.keys(value).reduce(
             return merge([...path, key], value[key], subject);
         }
 
-        return $set([...resolveObjectPath(path), ...key], value[key], subject);
+        return $set([...resolveObjectPath(path), key], value[key], subject);
     },
     subject
 );
