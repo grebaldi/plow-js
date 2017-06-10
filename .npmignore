@@ -1,3 +1,4 @@
 .gitignore
+.babelrc
 node_modules/
 test/
