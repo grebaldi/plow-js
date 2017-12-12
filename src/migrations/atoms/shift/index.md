@@ -22,7 +22,7 @@ const myObject = {
     itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
-$shift('itemsInTheFrige', subject);
+$shift('itemsInTheFrige', myObject);
 // returns {
 //     itemsInTheFrige: ['beer', 'milk']
 // }

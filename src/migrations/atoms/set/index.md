@@ -29,7 +29,7 @@ const myObject = {
 //
 // Don't like beer?
 //
-$set('itemsInTheFrige.1', 'wine', subject);
+$set('itemsInTheFrige.1', 'wine', myObject);
 // returns {
 //     itemsInTheFrige: ['eggs', 'wine', 'milk']
 // }

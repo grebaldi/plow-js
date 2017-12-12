@@ -32,7 +32,7 @@ const myObject = {
 //
 // Make the appartement awesome!
 //
-$override('rooms', { pool: {name: 'Freaking awesome pool table chamber!!!'} }, subject);
+$override('rooms', { pool: {name: 'Freaking awesome pool table chamber!!!'} }, myObject);
 // returns {
 //     kitchen: {name: 'Kitchen'},
 //     living: {name: 'Living Rooms'},
