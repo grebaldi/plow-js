@@ -22,7 +22,7 @@ const myObject = {
     itemsInTheFrige: ['eggs', 'beer', 'milk']
 };
 
-$pop('itemsInTheFrige', subject);
+$pop('itemsInTheFrige', myObject);
 // returns {
 //     itemsInTheFrige: ['eggs', 'beer']
 // }

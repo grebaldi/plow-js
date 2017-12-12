@@ -29,7 +29,7 @@ const myObject = {
 //
 // Too much beer...
 //
-$remove('itemsInTheFrige', 'beer', subject);
+$remove('itemsInTheFrige', 'beer', myObject);
 // returns {
 //     itemsInTheFrige: ['eggs', 'milk', 'bacon']
 // }
