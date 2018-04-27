@@ -214,6 +214,14 @@ describe('Migrations > Atoms > $set', () => {
 			expect(changed.foo).to.equal(subject.foo);
 			expect(changed.test.arr[1]).to.equal(subject.test.arr[1]);
 		});
+
+        it('should keep Date objects intact', () => {
+            const subject = {a:{b:new Date(2018, 11, 24, 10, 33, 30, 0)}};
+            const result = $set('a.c', new Date(2018, 11, 24, 11, 33, 30, 0), subject);
+
+            expect(result.a.b instanceof Date).to.equal(true);
+            expect(result.a.c instanceof Date).to.equal(true);
+        });
     });
 
     describe('Immutable', () => {
