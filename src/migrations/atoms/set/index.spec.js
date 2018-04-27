@@ -175,6 +175,14 @@ describe('Migrations > Atoms > $set', () => {
             const subject = undefined;
             expect($set('some.path', 'someValue', subject)).to.be.an('undefined');
         });
+
+        it('should keep Date objects intact', () => {
+            const subject = {a:{b:new Date(2018, 11, 24, 10, 33, 30, 0)}};
+            const result = $set('a.c', new Date(2018, 11, 24, 11, 33, 30, 0), subject);
+
+            expect(result.a.b instanceof Date).to.equal(true);
+            expect(result.a.c instanceof Date).to.equal(true);
+        });
     });
 
     describe('Immutable', () => {
