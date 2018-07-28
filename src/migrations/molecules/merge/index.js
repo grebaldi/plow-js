@@ -5,13 +5,6 @@ import $set from '../../atoms/set/index.js';
 
 const merge = (path, value, subject) => Object.keys(value).reduce(
     (subject, key) => {
-		if (Array.isArray(value)) {
-			if (key.match(/^\d+$/)) {
-				key = parseInt(key);
-			} else {
-				throw new TypeError(`Array key must be of type number or able to be parsed to number! Got key: ${key} of type ${typeof key}.`);
-			}
-		}
         if (typeof value[key] === 'object') {
             return merge([...path, key], value[key], subject);
         }
