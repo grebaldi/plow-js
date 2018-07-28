@@ -18,19 +18,23 @@ const recursivelySetValueInObject = (object, value, path) => {
         } else {
             object = {};
         }
-    }
+	}
 
-    //
-    // Make sure, that array elements are always inserted at the last position, if the path exceeds the length
-    // of the array
-    //
-    if (typeof path[0] === 'number' && Array.isArray(object) && object.length < path[0]) {
-        path[0] = object.length;
-    }
+	if (Array.isArray(object)) {
+		if (typeof path[0] === 'number') {
+			//
+			// Make sure, that array elements are always inserted at the last position, if the path exceeds the length
+			// of the array
+			//
+			const key = Math.min(object.length, path[0]);
 
-    object[path[0]] = recursivelySetValueInObject(object[path[0]], value, path.slice(1));
+			return Object.assign([], object, {[key]: recursivelySetValueInObject(object[path[0]], value, path.slice(1))});
+		} else {
+			throw new TypeError(`Array key has to be a number! Got ${path[0]} with type of ${typeof path[0]}`);
+		}
+	}
 
-    return object;
+	return Object.assign({}, object, {[path[0]]: recursivelySetValueInObject(object[path[0]], value, path.slice(1))});
 };
 
 //
@@ -41,9 +45,9 @@ export default createPolymorphFunction(
         if (typeof subject !== 'undefined') {
             if (typeof subject.setIn === 'function') {
                 return subject.setIn(resolveObjectPath(path), value);
-            }
-            const object = JSON.parse(JSON.stringify(subject));
-            return recursivelySetValueInObject(object, value, resolveObjectPath(path));
+			}
+
+            return recursivelySetValueInObject(subject, value, resolveObjectPath(path));
         }
 
         return subject;

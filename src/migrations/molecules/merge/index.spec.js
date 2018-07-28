@@ -91,9 +91,10 @@ describe('Migrations > Atoms > $merge', () => {
                 }
             };
 
-            expect($merge('test', {a: ['foo']}, subject)).to.deep.equal({
+            expect($merge('test', {a: ['foo'], b: 'bar'}, subject)).to.deep.equal({
                 test: {
-                    a: ['foo', 'b', 'c']
+					a: ['foo', 'b', 'c'],
+					b: 'bar'
                 }
             });
             expect($merge('test', {a: ['foo']}, subject)).to.not.equal(subject);
@@ -132,6 +133,47 @@ describe('Migrations > Atoms > $merge', () => {
 					}
 				}
 			});
+		});
+
+		it('should keep the references of untouched values unchanged', () => {
+			const subject = {
+				test: {
+					arr: [
+						{
+							a: ['a', 'b', 'c'],
+							b: 'buzz'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			};
+			const merged = $merge('test.arr.0', {a: ['changedValue'], c: 'addedValue'}, subject);
+
+			expect(merged).to.deep.equal({
+				test: {
+					arr: [
+						{
+							a: ['changedValue', 'b', 'c'],
+							b: 'buzz',
+							c: 'addedValue'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			});
+			expect(merged).to.not.equal(subject);
+			expect(merged.foo).to.equal(merged.foo);
+			expect(merged.test.arr[1]).to.equal(subject.test.arr[1]);
 		});
     });
 
