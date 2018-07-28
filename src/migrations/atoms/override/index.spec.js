@@ -90,7 +90,45 @@ describe('Migrations > Atoms > $override', () => {
         it('should tolerate undefined subjects', () => {
             const subject = undefined;
             expect($override('some.path', 'someValue', subject)).to.be.an('undefined');
-        });
+		});
+
+		it('should keep the references of untouched values unchanged', () => {
+			const subject = {
+				test: {
+					arr: [
+						{
+							a: 'a'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			};
+			const overwritten = $override('test.arr', [{c: 'c'}], subject);
+
+			expect(overwritten).to.deep.equal({
+				test: {
+					arr: [
+						{
+							c: 'c'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			});
+			expect(overwritten).to.not.equal(subject);
+			expect(overwritten.foo).to.equal(overwritten.foo);
+			expect(overwritten.test.arr[1]).to.equal(subject.test.arr[1]);
+		});
     });
 
     describe('Immutable', () => {
