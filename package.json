@@ -1,5 +1,6 @@
 {
   "name": "plow-js",
+  "version": "2.2.0",
   "description": "Functional operations on large immutable objects",
   "main": "dist/index.js",
   "scripts": {
