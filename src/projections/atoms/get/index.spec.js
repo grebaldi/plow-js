@@ -210,5 +210,14 @@ describe('Projections > Atoms > $get', () => {
             expect($get('a.3.foo', subject)).to.equal('foo');
             expect($get('a.3.bar', subject)).to.equal('bar');
         });
+        it('should return deeply addressed values in inner Vanilla JS structures', () => {
+            const subject = new Iterable.Keyed({
+                a: {
+                    vanilaKey: 'vanilaValue'
+                }
+            });
+
+            expect($get('a.vanilaKey', subject)).to.equal('vanilaValue');
+        });
     });
 });
