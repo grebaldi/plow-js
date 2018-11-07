@@ -16,11 +16,19 @@ export default createPolymorphFunction(
 
         return subject => {
             if (subject && typeof subject.getIn === 'function') {
-                return subject.getIn(resolveObjectPath(path));
+                const getInResult = subject.getIn(resolveObjectPath(path));
+                if (getInResult !== undefined) {
+                    return getInResult;
+                }
             }
 
             return resolveObjectPath(path).reduce(
-                (subject, part) => subject && subject[part],
+                (subject, part) => {
+                    if (subject && typeof subject.get === 'function') {
+                        return subject.get(part);
+                    }
+                    return subject && subject[part];
+                },
                 subject
             );
         }
