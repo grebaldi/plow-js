@@ -174,7 +174,46 @@ describe('Migrations > Atoms > $set', () => {
         it('should tolerate undefined subjects', () => {
             const subject = undefined;
             expect($set('some.path', 'someValue', subject)).to.be.an('undefined');
-        });
+		});
+
+		it('should keep the references of untouched values unchanged', () => {
+			const subject = {
+				test: {
+					arr: [
+						{
+							a: ['a', 'b', 'c'],
+							b: 'buzz'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			};
+
+			const changed = $set('test.arr.0', {a: 'a'}, subject);
+			expect(changed).to.deep.equal({
+				test: {
+					arr: [
+						{
+							a: 'a'
+						},
+						{
+							b: 'b'
+						}
+					]
+				},
+				foo: {
+					bar: 'baz'
+				}
+			});
+			expect(changed).not.to.equal(subject);
+			expect(changed.foo).to.equal(subject.foo);
+			expect(changed.test.arr[1]).to.equal(subject.test.arr[1]);
+		});
     });
 
     describe('Immutable', () => {
@@ -442,5 +481,5 @@ describe('Migrations > Atoms > $set', () => {
                 }
             });
         });
-    });
+	});
 });
