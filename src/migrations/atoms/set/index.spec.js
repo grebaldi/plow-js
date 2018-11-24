@@ -442,5 +442,27 @@ describe('Migrations > Atoms > $set', () => {
                 }
             });
         });
+        it('should set values in deeper Vanilla JS structures', () => {
+            const subject = new OrderedMap({
+                a: {
+                    vanilaKey: null
+                }
+            });
+
+            expect($set('a.vanilaKey', 'vanilaValue', subject).toJS()).to.deep.equal({
+                a: {
+                    vanilaKey: 'vanilaValue'
+                }
+            });
+        });
+        it('should set deeply addressed values on non-existing paths', () => {
+            const subject = new OrderedMap({});
+
+            expect($set('a.vanilaKey', 'vanilaValue', subject).toJS()).to.deep.equal({
+                a: {
+                    vanilaKey: 'vanilaValue'
+                }
+            });
+        });
     });
 });

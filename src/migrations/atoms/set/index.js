@@ -12,6 +12,13 @@ const recursivelySetValueInObject = (object, value, path) => {
     }
 
     //
+    // If the object has a setter, use it
+    //
+    if (object && typeof object.set === 'function') {
+        return object.set(path[0], recursivelySetValueInObject(object.get(path[0]), value, path.slice(1)));
+    }
+
+    //
     // Create missing path targets
     //
     if (typeof object === 'undefined') {
@@ -21,7 +28,6 @@ const recursivelySetValueInObject = (object, value, path) => {
             object = {};
         }
     }
-
     //
     // Make sure, that array elements are always inserted at the last position, if the path exceeds the length
     // of the array
@@ -31,7 +37,6 @@ const recursivelySetValueInObject = (object, value, path) => {
     }
 
     object[path[0]] = recursivelySetValueInObject(object[path[0]], value, path.slice(1));
-
     return object;
 };
 
@@ -41,10 +46,17 @@ const recursivelySetValueInObject = (object, value, path) => {
 export default createPolymorphFunction(
     path => value => subject => {
         if (typeof subject !== 'undefined') {
+            let object = subject;
             if (typeof subject.setIn === 'function') {
-                return subject.setIn(resolveObjectPath(path), value);
+                try {
+                    const setInResult = subject.setIn(resolveObjectPath(path), value);
+                    if (setInResult !== undefined) {
+                        return setInResult;
+                    }
+                } catch (e) {}
+            } else {
+                object = JSON.parse(JSON.stringify(subject));
             }
-            const object = JSON.parse(JSON.stringify(subject));
             return recursivelySetValueInObject(object, value, resolveObjectPath(path));
         }
 
