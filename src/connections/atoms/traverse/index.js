@@ -1,7 +1,5 @@
 import createPolymorphFunction from '../../../util/createPolymorphFunction/index.js';
 
-import $set from '../../../migrations/atoms/set/index.js';
-
 const traverse = actor => subject => {
     if (typeof subject === 'object') {
         return Object.keys(subject).reduce(
