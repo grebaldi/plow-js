@@ -49,8 +49,11 @@ const getValueAtSomePath = $get('some.path');
 
 At many points JavaScript `objects` lack support of basic array operations (like `map`, `filter` and things alike). Plow JS provides a unified interface and applies the expected behavior to both `arrays` and `objects`.
 
-### Immutable JS support
+### Immutable JS support (DEPRECATED)
 
-Besides operations on native JavaScript data structures, Plow JS also supports the use of [Immutable JS](http://facebook.github.io/immutable-js/), a library for immutable data structures in JavaScript, developed and published by facebook.
+<s>Besides operations on native JavaScript data structures, Plow JS also supports the use of [Immutable JS](http://facebook.github.io/immutable-js/), a library for immutable data structures in JavaScript, developed and published by facebook.
 
-Plow JS uses duck typing to distinguish between native JS and Immutable JS, so the latter is no dependency for Plow JS itself. You don't need to use Immutable JS, however it is recommended to do so, the more complex your data becomes (since Immutable JS is much better at optimization).
+Plow JS uses duck typing to distinguish between native JS and Immutable JS, so the latter is no dependency for Plow JS itself. You don't need to use Immutable JS, however it is recommended to do so, the more complex your data becomes (since Immutable JS is much better at optimization).</s>
+
+> **WARNING:** Immutable JS support is deprecated. It will be removed entirely with the next major version of Plow JS (which will be 4.0.0). Until then, 
+support for Immutable JS versions below (but not including) v4 - though discouraged - continues to work. 
