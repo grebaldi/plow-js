@@ -1,8 +1,6 @@
 import createPolymorphFunction from '../../../util/createPolymorphFunction/index.js';
 import resolveObjectPath from '../../../util/resolveObjectPath/index.js';
 
-import $get from '../../../projections/atoms/get/index.js';
-
 //
 // Helper function to peform the necessary recursion
 //

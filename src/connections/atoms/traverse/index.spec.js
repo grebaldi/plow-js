@@ -1,12 +1,8 @@
 import {expect} from 'chai';
-import sinon from 'sinon';
 
 import $traverse from './index.js';
 
 describe('Connections > Atoms > $traverse', () => {
-    // Helper Identity function
-    const id = id => id;
-
     describe('Common', () => {
         it('$traverse :: Function -> Object -> Object', () => {
             expect($traverse).to.be.a('function');

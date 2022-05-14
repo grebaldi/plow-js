@@ -9,7 +9,7 @@ export default createPolymorphFunction(
         const object = $get(path, subject);
 
 
-        if (typeof object !== 'object' || !Boolean(object)) {
+        if (typeof object !== 'object' || !object) {
             return false;
         }
 

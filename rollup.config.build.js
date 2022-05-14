@@ -1,9 +1,12 @@
-import babel from 'rollup-plugin-babel';
+import babel from "@rollup/plugin-babel";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default {
-    moduleName: 'plow',
-    entry: 'src/index.js',
-    plugins: [babel()],
-    format: 'umd',
-    dest: 'dist/index.js'
+	input: "src/index.js",
+	output: {
+		name: "plow",
+		file: "dist/index.js",
+		format: "umd",
+	},
+	plugins: [babel(), nodeResolve()],
 };

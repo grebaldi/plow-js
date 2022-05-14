@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import 'mocha-sinon';
-import {Stack, Map, OrderedSet, Set, OrderedMap, List} from 'immutable';
+import {Stack, Map, List} from 'immutable';
 
 import $unshift from './index.js';
 
