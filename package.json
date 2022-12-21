@@ -1,6 +1,6 @@
 {
   "name": "plow-js",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Functional operations on large immutable objects",
   "main": "dist/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "url": "https://github.com/grebaldi/plow-js.git"
   },
   "browserslist": [
-    "defaults",
+    "last 2 versions",
     "not IE 11",
     "maintained node versions"
   ]

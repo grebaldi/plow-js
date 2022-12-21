@@ -8,5 +8,5 @@ export default {
 		file: "dist/index.js",
 		format: "umd",
 	},
-	plugins: [babel(), nodeResolve()],
+	plugins: [babel({ babelHelpers: "bundled" }), nodeResolve()],
 };
