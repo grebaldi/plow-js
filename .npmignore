@@ -1,4 +1,15 @@
-.gitignore
 .babelrc
+.editorconfig
+.eslintrc
+.github/
+.gitignore
+.nvmrc
+**/*.spec.js
+docs/
 node_modules/
+src/
+styles/
+SUMMARY.md
 test/
+pnpm-lock.yaml
+rollup.*.js
