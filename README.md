@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/grebaldi/plow-js.svg?branch=main)](https://travis-ci.org/grebaldi/plow-js)
 
-# Plow JS
+# <s>Plow JS</s>
+
+**ARCHIVED:** This repository has been moved here: https://codeberg.org/wbehncke/plow-js
 
 > Functional operations on large immutable objects
 
